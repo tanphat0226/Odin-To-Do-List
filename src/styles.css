@@ -2,7 +2,124 @@
 @import url('normalize.css');
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Gloria+Hallelujah&display=swap');
 
+:root {
+	/* Neutrals */
+	--white: #ffffff;
+	--off-white: #eeeeee;
+	--light-gray: #fafafa;
+	--gray-light: #aaaaaa;
+	--gray-medium: #808080;
+	--gray-dark: #666666;
+	--black-soft: #202020;
+	--black: #000000;
+	--black-transparent: #00000066;
+
+	/* Accent colors */
+	--orange-light: #ffefe5;
+	--orange: #f48318;
+	--red: #dc4c3e;
+	--red-dark: #a81f00;
+	--purple: #692ec2;
+	--matcha: #a8c686;
+	--matcha-light: #d9e7c1;
+	--matcha-dark: #7b9b52;
+	--matcha-muted: #b7c99b;
+}
+
 html {
 	font-family: 'Be Vietnam Pro', sans-serif;
 	font-size: 62.5%; /* 62.5% of 16px user agent font size is 10px */
+}
+
+/* Common CSS */
+.btn {
+	min-width: 100px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 4px;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	cursor: pointer;
+
+	.btn-icon {
+		width: 24px;
+		color: currentColor;
+	}
+
+	.btn-label {
+		font-size: 1.6rem;
+		line-height: 1.6;
+	}
+}
+
+.btn.btn--primary {
+	color: var(--red-dark);
+}
+
+/* Logo */
+#logo {
+	font-size: 2.4rem;
+	padding: 0;
+	margin: 0;
+	color: var(--matcha-dark);
+	user-select: none;
+}
+
+.app {
+	display: flex;
+}
+
+.app-content {
+	margin: 20px;
+}
+
+.app-content-title {
+	font-size: 2.2rem;
+}
+
+/* Sidebar */
+.sidebar {
+	padding: 12px;
+	width: 250px;
+	height: 100vh;
+	background-color: var(--light-gray);
+	overflow: hidden;
+}
+
+.sidebar-nav-label {
+	font-size: 1.4rem;
+	color: var(--gray-light);
+	user-select: none;
+}
+
+.sidebar-nav {
+	margin: 20px 0;
+}
+
+/* Nav */
+.nav-list {
+	list-style: none;
+	padding: 0;
+}
+
+.nav-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	padding: 8px 4px;
+	font-size: 1.6rem;
+	cursor: pointer;
+	color: var(--gray-dark);
+
+	&:hover {
+		background-color: var(--off-white);
+	}
+}
+
+.nav-item-icon svg {
+	width: 24px;
+	margin-left: 4px;
 }
