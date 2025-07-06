@@ -36,12 +36,14 @@ html {
 	min-width: 100px;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: 8px;
 	padding: 4px;
 	background-color: transparent;
 	outline: none;
 	border: none;
 	cursor: pointer;
+	border-radius: 4px;
 
 	.btn-icon {
 		width: 24px;
@@ -52,6 +54,11 @@ html {
 		font-size: 1.6rem;
 		line-height: 1.6;
 	}
+}
+
+.btn.btn--medium {
+	min-width: 50px;
+	padding: 10px 12px;
 }
 
 .btn.btn--primary {
@@ -73,10 +80,18 @@ html {
 
 .app-content {
 	margin: 20px;
+	flex: 1;
 }
 
 .app-content-title {
 	font-size: 2.2rem;
+}
+
+.page-heading {
+	font-size: 2.4rem;
+	font-weight: bold;
+	user-select: none;
+	margin: 20px 0;
 }
 
 /* Sidebar */
@@ -122,4 +137,191 @@ html {
 .nav-item-icon svg {
 	width: 24px;
 	margin-left: 4px;
+}
+
+.todolist {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 1.4rem;
+}
+
+.todo-item {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding: 0.75rem;
+	border-bottom: 1px solid #eee;
+	transition: background 0.3s;
+	margin-top: 6px;
+	border-left: 3px solid transparent;
+}
+
+.todo-item:hover {
+	background: #f0f0f0;
+}
+
+.todo-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	margin-left: 0.75rem;
+}
+
+.todo-title {
+	font-weight: 400;
+	cursor: pointer;
+}
+
+.todo-description {
+	font-size: 1rem;
+	color: #555;
+	display: none;
+	margin-top: 0.25rem;
+}
+
+.todo-meta {
+	font-size: 0.8rem;
+	color: #888;
+	margin-top: 4px;
+	user-select: none;
+}
+
+.priority-low {
+	border-left-color: var(--matcha-dark);
+}
+.priority-medium {
+	border-left-color: var(--orange);
+}
+.priority-high {
+	border-left-color: var(--red);
+}
+
+.completed .todo-title {
+	text-decoration: line-through;
+	color: gray;
+}
+
+.editBtn,
+.deleteBtn {
+	display: flex;
+	align-items: center;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2rem;
+	margin-left: 8px;
+	color: #555;
+	padding: 8px;
+	opacity: 0.5;
+
+	&:hover {
+		opacity: 1;
+		border-radius: 4px;
+	}
+}
+
+.editBtn:hover {
+	background-color: var(--matcha);
+}
+
+.deleteBtn:hover {
+	background-color: var(--red);
+}
+
+/* Form */
+.form-container {
+	background: white;
+	padding: 2rem;
+	border-radius: 10px;
+	max-width: 400px;
+	margin: auto;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+	margin-bottom: 1rem;
+}
+.form-label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: bold;
+}
+.form-input,
+.form-textarea,
+.form-select {
+	width: 100%;
+	padding: 0.5rem;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+/* Modal */
+#modal-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.modal {
+	background: white;
+	padding: 1.5rem;
+	border-radius: 8px;
+	width: 400px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.modal h3 {
+	font-size: 1.8rem;
+	margin: 0 0 10px;
+}
+
+.modal .form-group {
+	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.modal .form-group label {
+	font-size: 1.4rem;
+	font-weight: bold;
+}
+
+.modal input,
+.modal select {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-top: 4px;
+	font-size: 1.2rem;
+}
+
+.modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+
+button.modal-close {
+	&:hover {
+		background-color: var(--off-white);
+	}
+}
+
+button.modal-confirm {
+	background-color: var(--red);
+	color: var(--white);
+
+	&:hover {
+		background-color: var(--red-dark);
+	}
 }
