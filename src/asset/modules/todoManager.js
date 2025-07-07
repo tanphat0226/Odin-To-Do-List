@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
+import storage from './storage'
 
 class TodoManager {
 	constructor() {
@@ -6,7 +7,7 @@ class TodoManager {
 			return TodoManager.instance
 		}
 
-		this.todos = []
+		this.todos = storage.getItem('todos') || []
 		TodoManager.instance = this
 	}
 
@@ -21,6 +22,8 @@ class TodoManager {
 			completed: false,
 		}
 
+		storage.setItem('todos', [...this.todos, newTodo])
+		// Cập nhật danh sách todos
 		this.todos.push(newTodo)
 	}
 
@@ -33,6 +36,7 @@ class TodoManager {
 		if (index !== -1) {
 			this.todos.splice(index, 1)
 		}
+		storage.setItem('todos', this.todos) // Cập nhật storage sau khi xóa
 	}
 
 	updateTodo(id, data) {
@@ -40,6 +44,7 @@ class TodoManager {
 		if (index !== -1) {
 			this.todos[index] = { ...this.todos[index], ...data }
 		}
+		storage.setItem('todos', this.todos) // Cập nhật storage sau khi sửa
 	}
 
 	toggleComplete(id) {

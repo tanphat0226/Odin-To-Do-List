@@ -1,6 +1,8 @@
+import storage from './storage'
+
 class ProjectManager {
 	constructor() {
-		this.projects = []
+		this.projects = storage.getItem('projects') || []
 		if (ProjectManager.instance) {
 			return ProjectManager.instance
 		}
@@ -28,7 +30,8 @@ class ProjectManager {
 		if (!name || this.projects.includes(name)) {
 			return false // Không thêm nếu tên rỗng hoặc đã tồn tại
 		} else {
-			this.projects.push(projectObj)
+			storage.setItem('projects', [...this.projects, projectObj])
+			this.projects.push(projectObj) // Cập nhật danh sách dự án
 			return true // Thêm thành công
 		}
 	}
