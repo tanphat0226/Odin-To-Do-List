@@ -11,6 +11,7 @@ class UIManager {
 		this.todoList = document.getElementById('todo-list')
 		this.addProjectBtn = document.getElementById('add-project-btn')
 		this.addTodoBtn = document.getElementById('add-todo-btn')
+		this.allTodoBTn = document.getElementById('all-todos-btn')
 
 		this.eventListeners()
 		this.renderSidebarProjectList()
@@ -22,6 +23,11 @@ class UIManager {
 	}
 
 	eventListeners() {
+		// All Todos button
+		this.allTodoBTn.addEventListener('click', () => {
+			this.renderAllTodoPage()
+			this.setCurrentPage('all')
+		})
 		// Add Project button
 		this.addProjectBtn.addEventListener('click', () => {
 			this.showModal({
@@ -245,7 +251,57 @@ class UIManager {
 					this.setCurrentPage(project.name)
 				})
 
-				li.appendChild(span)
+				const projectAction = document.createElement('div')
+				projectAction.className = 'project-item-action'
+
+				// Optional: gắn icon sửa project
+				const editIcon = document.createElement('span')
+				editIcon.className = 'project-item-icon'
+				editIcon.textContent = '✏️'
+
+				editIcon.addEventListener('click', (e) => {
+					e.stopPropagation() // Ngăn chặn sự kiện click lan truyền lên li
+					this.showModal({
+						title: '✏️ Edit Project',
+						contentHTML: `
+							<div class="form-group">
+								<label for="projectName">Project Name</label>
+								<input id="projectName" type="text" name="projectName" value="${project.name}" required min="3" max="20" />
+							</div>
+						`,
+						onSubmit: (data) => {
+							const newProjectName = data.projectName.trim()
+							projectManager.updateProject(
+								project.name,
+								newProjectName
+							)
+							// Cập nhật lại danh sách project và render lại
+							this.renderSidebarProjectList()
+							this.renderPageProject(newProjectName)
+							this.setCurrentPage(newProjectName)
+						},
+					})
+				})
+
+				// Optional: gắn icon xóa project
+				const deleteIcon = document.createElement('span')
+				deleteIcon.className = 'project-item-icon'
+				deleteIcon.textContent = '🗑️'
+
+				deleteIcon.addEventListener('click', (e) => {
+					e.stopPropagation() // Ngăn chặn sự kiện click lan truyền lên li
+					projectManager.removeProject(project.name)
+					this.renderSidebarProjectList()
+
+					if (this.currentPage === project.name) {
+						this.renderAllTodoPage()
+						this.setCurrentPage('all')
+					}
+				})
+
+				projectAction.append(editIcon, deleteIcon)
+
+				li.append(span, projectAction)
 				projectListEl.appendChild(li)
 			})
 		}

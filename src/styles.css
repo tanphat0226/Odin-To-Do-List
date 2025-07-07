@@ -373,3 +373,10 @@ button.modal-confirm {
 	padding: 20px;
 	border-radius: 8px;
 }
+
+.project-item-action {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}

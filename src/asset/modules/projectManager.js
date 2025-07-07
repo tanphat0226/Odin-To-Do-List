@@ -36,6 +36,27 @@ class ProjectManager {
 		}
 	}
 
+	removeProject(name) {
+		const index = this.projects.findIndex(
+			(project) => project.name === name
+		)
+		if (index !== -1) {
+			this.projects.splice(index, 1)
+		}
+		storage.setItem('projects', this.projects) // Cập nhật storage sau khi xóa
+	}
+
+	updateProject(oldName, newName) {
+		const index = this.projects.findIndex(
+			(project) => project.name === oldName
+		)
+		if (index !== -1) {
+			const updatedProject = { ...this.projects[index], name: newName }
+			this.projects[index] = updatedProject
+			storage.setItem('projects', this.projects) // Cập nhật storage sau khi sửa
+		}
+	}
+
 	getAllProjects() {
 		return this.projects
 	}
