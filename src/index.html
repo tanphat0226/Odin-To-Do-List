@@ -15,7 +15,10 @@
 				<nav class="sidebar-nav">
 					<ul class="nav-list">
 						<li class="nav-item">
-							<button class="btn btn--primary">
+							<button
+								id="add-todo-btn"
+								class="btn btn--primary add-todo-btn"
+							>
 								<svg
 									class="btn-icon"
 									xmlns="http://www.w3.org/2000/svg"
@@ -50,10 +53,15 @@
 				</nav>
 
 				<nav class="sidebar-nav">
-					<h3 class="sidebar-nav-label">Projects</h3>
-					<ul class="nav-list">
-						<li class="nav-item">
-							<span class="nav-item-label">Project</span>
+					<h3 class="sidebar-nav-label">
+						<span>Projects</span>
+						<span id="add-project-btn" class="project-item-icon">
+							➕
+						</span>
+					</h3>
+					<ul id="project-list" class="project-list">
+						<li class="project-item">
+							<span class="project-item-label">Project</span>
 						</li>
 					</ul>
 				</nav>

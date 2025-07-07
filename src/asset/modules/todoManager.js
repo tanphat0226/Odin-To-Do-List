@@ -10,14 +10,14 @@ class TodoManager {
 		TodoManager.instance = this
 	}
 
-	addTodoItem({ projectId, title, description, dueDate, priority }) {
+	addTodoItem({ project, title, description, dueDate, priority }) {
 		const newTodo = {
 			id: uuidv4(),
 			title,
 			description,
 			dueDate,
 			priority,
-			projectId,
+			project,
 			completed: false,
 		}
 
